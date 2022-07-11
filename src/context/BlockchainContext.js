@@ -385,7 +385,20 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
-  
+  const checkifWalletIsConnected = async () => {
+    try {
+      if (!window.ethereum) return alert("Please install Metmask");
+
+      const accounts = await provider.send("eth_accounts");
+      if (accounts.length) {
+        setCurrentAccount(accounts[0]);
+      } else {
+        console.log("No accounts found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getBalance = async () => {
     try {
