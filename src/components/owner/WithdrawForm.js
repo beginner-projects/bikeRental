@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import {
   Button,
   Text,
-  Flex,
   Center,
 } from "@chakra-ui/react";
 import { useContext } from "react";
@@ -14,8 +13,7 @@ export default function WithdrawForm() {
 
   const {
     handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm();
 
   const onSubmit = async (values) => {
