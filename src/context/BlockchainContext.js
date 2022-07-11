@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { abi, contractAddress } from "../config.json";
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
@@ -19,9 +18,359 @@ export const BlockchainProvider = ({ children }) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
 
-  const address = contractAddress;
-  const contractAbi = abi;
-  const contract = new ethers.Contract(address, contractAbi, signer);
+  const address = "0xFbF4465872db3133b56F4F47972669251C676405";
+  const abi = [
+    {
+      inputs: [],
+      stateMutability: "nonpayable",
+      type: "constructor",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address payable",
+          name: "walletAddress",
+          type: "address",
+        },
+        {
+          internalType: "string",
+          name: "firstName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "lastName",
+          type: "string",
+        },
+        {
+          internalType: "bool",
+          name: "canRent",
+          type: "bool",
+        },
+        {
+          internalType: "bool",
+          name: "active",
+          type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "balance",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "due",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "start",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "end",
+          type: "uint256",
+        },
+      ],
+      name: "addRenter",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "balanceOf",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "balanceOfRenter",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "canRentBike",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "checkIn",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "checkOut",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "deposit",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "getDue",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "getOwnerBalance",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "getRenter",
+      outputs: [
+        {
+          internalType: "string",
+          name: "firstName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "lastName",
+          type: "string",
+        },
+        {
+          internalType: "bool",
+          name: "canRent",
+          type: "bool",
+        },
+        {
+          internalType: "bool",
+          name: "active",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "getTotalDuration",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "isOwner",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
+        },
+      ],
+      name: "makePayment",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "walletAddress",
+          type: "address",
+        },
+      ],
+      name: "renterExists",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      name: "renters",
+      outputs: [
+        {
+          internalType: "address payable",
+          name: "walletAddress",
+          type: "address",
+        },
+        {
+          internalType: "string",
+          name: "firstName",
+          type: "string",
+        },
+        {
+          internalType: "string",
+          name: "lastName",
+          type: "string",
+        },
+        {
+          internalType: "bool",
+          name: "canRent",
+          type: "bool",
+        },
+        {
+          internalType: "bool",
+          name: "active",
+          type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "balance",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "due",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "start",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "end",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "withdrawOwnerBalance",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
+    },
+  ];
+  const contract = new ethers.Contract(address, abi, signer);
 
   const connectWallet = async () => {
     try {
