@@ -7,7 +7,7 @@ export const BlockchainContext = React.createContext("");
 
 export const BlockchainProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [balance, setBalance] = useState();
+  const [ setBalance] = useState();
   const [renterExists, setRenterExists] = useState();
   const [renter, setRenter] = useState();
   const [renterBalance, setRenterBalance] = useState();
@@ -399,14 +399,14 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
-  const getBalance = async () => {
-    try {
-      const contractBalance = await contract.balanceOf();
-      setBalance(ethers.utils.formatEther(contractBalance));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getBalance = async () => {
+  //   try {
+  //     const contractBalance = await contract.balanceOf();
+  //     setBalance(ethers.utils.formatEther(contractBalance));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const checkRenterExists = async () => {
     try {
