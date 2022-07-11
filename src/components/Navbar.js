@@ -3,30 +3,17 @@ import {
   Box,
   Flex,
   Text,
-  IconButton,
   Button,
   Stack,
-  Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
+  
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
 import { useContext } from "react";
 import { BlockchainContext } from "../context/BlockchainContext";
 
 export default function Navbar() {
-  const { isOpen, onToggle } = useDisclosure();
   const { connectWallet, currentAccount } = useContext(BlockchainContext);
 
   return (

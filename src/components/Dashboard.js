@@ -12,7 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
   const { renterExists, currentAccount } = useContext(BlockchainContext);
-  let [loading, setLoading] = useState(true);
+  let [loading] = useState(true);
   console.log(renterExists);
   return (
     <Stack
