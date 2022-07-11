@@ -597,7 +597,6 @@ export const BlockchainProvider = ({ children }) => {
     getOwnerBalance();
     isOwner();
     getBalance();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentAccount, owner]);
 
   return (
