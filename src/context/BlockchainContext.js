@@ -385,74 +385,12 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
-  const checkifWalletIsConnected = async () => {
-    try {
-      if (!window.ethereum) return alert("Please install Metmask");
-
-      const accounts = await provider.send("eth_accounts");
-      if (accounts.length) {
-        setCurrentAccount(accounts[0]);
-      } else {
-        console.log("No accounts found");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getBalance = async () => {
-    try {
-      if (owner) {
-        const contractBalance = await contract.balanceOf();
-        setBalance(ethers.utils.formatEther(contractBalance));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getOwnerBalance = async () => {
-    try {
-      if (owner) {
-        const contractBalance = await contract.getOwnerBalance();
-        setOwnerBalance(ethers.utils.formatEther(contractBalance));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const ownerWithdraw = async () => {
     try {
       const ownerBalance = await contract.withdrawOwnerBalance();
       await ownerBalance.wait();
       await getOwnerBalance();
       await getBalance();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const isOwner = async () => {
-    try {
-      if (currentAccount) {
-        const owner = await contract.isOwner();
-        setOwner(owner);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const checkRenterExists = async () => {
-    try {
-      if (currentAccount) {
-        const renter = await contract.renterExists(currentAccount);
-        setRenterExists(renter);
-        if (renter) {
-          await getRenter();
-        }
-      }
     } catch (error) {
       console.log(error);
     }
@@ -500,17 +438,6 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
-  const getRenterBalance = async () => {
-    try {
-      if (currentAccount) {
-        const balance = await contract.balanceOfRenter(currentAccount);
-        setRenterBalance(ethers.utils.formatEther(balance));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const deposit = async (value) => {
     try {
       const bnbValue = ethers.utils.parseEther(value);
@@ -519,28 +446,6 @@ export const BlockchainProvider = ({ children }) => {
       });
       await deposit.wait();
       await getRenterBalance();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getDue = async () => {
-    try {
-      if (currentAccount) {
-        const due = await contract.getDue(currentAccount);
-        setDue(ethers.utils.formatEther(due));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getTotalDuration = async () => {
-    try {
-      if (currentAccount) {
-        const totalDuration = await contract.getTotalDuration(currentAccount);
-        setDuration(Number(totalDuration));
-      }
     } catch (error) {
       console.log(error);
     }
@@ -589,14 +494,100 @@ export const BlockchainProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkifWalletIsConnected();
-    checkRenterExists();
-    getRenterBalance();
-    getDue();
-    getTotalDuration();
-    getOwnerBalance();
-    isOwner();
-    getBalance();
+    const checkifWalletIsConnected = async () => {
+      try {
+        if (!window.ethereum) return alert("Please install Metmask");
+
+        const accounts = await provider.send("eth_accounts");
+        if (accounts.length) {
+          setCurrentAccount(accounts[0]);
+        } else {
+          console.log("No accounts found");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const checkRenterExists = async () => {
+      try {
+        if (currentAccount) {
+          const renter = await contract.renterExists(currentAccount);
+          setRenterExists(renter);
+          if (renter) {
+            await getRenter();
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getRenterBalance = async () => {
+      try {
+        if (currentAccount) {
+          const balance = await contract.balanceOfRenter(currentAccount);
+          setRenterBalance(ethers.utils.formatEther(balance));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getDue = async () => {
+      try {
+        if (currentAccount) {
+          const due = await contract.getDue(currentAccount);
+          setDue(ethers.utils.formatEther(due));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getTotalDuration = async () => {
+      try {
+        if (currentAccount) {
+          const totalDuration = await contract.getTotalDuration(currentAccount);
+          setDuration(Number(totalDuration));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getOwnerBalance = async () => {
+      try {
+        if (owner) {
+          const contractBalance = await contract.getOwnerBalance();
+          setOwnerBalance(ethers.utils.formatEther(contractBalance));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const isOwner = async () => {
+      try {
+        if (currentAccount) {
+          const owner = await contract.isOwner();
+          setOwner(owner);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getBalance = async () => {
+      try {
+        if (owner) {
+          const contractBalance = await contract.balanceOf();
+          setBalance(ethers.utils.formatEther(contractBalance));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
   }, [currentAccount, owner]);
 
   return (
