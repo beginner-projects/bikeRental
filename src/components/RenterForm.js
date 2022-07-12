@@ -90,7 +90,7 @@ export default function RenterForm() {
           </FormControl>
           <Button
             mt={4}
-            colorScheme="teal"
+            colorScheme="pink"
             isLoading={isSubmitting}
             type="submit"
           >

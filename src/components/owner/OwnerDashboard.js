@@ -14,7 +14,7 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { BlockchainContext } from "../../context/BlockchainContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import WithdrawForm from "./withdrawForm";
+import WithdrawForm from "./WithdrawForm";
 
 function StatsCard(props) {
   const { title, stat, icon, bgColor } = props;

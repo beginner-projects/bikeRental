@@ -52,7 +52,7 @@ export default function AddToBalanceForm() {
         </FormControl>
         <Button
           mt={4}
-          colorScheme="teal"
+          colorScheme="pink"
           isLoading={isSubmitting}
           type="submit"
         >

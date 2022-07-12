@@ -6,8 +6,6 @@ import {
   Text,
   Button,
   Stack,
-  Icon,
-  useColorModeValue,
   createIcon,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -33,14 +31,12 @@ export default function Hero() {
             lineHeight={"110%"}
           >
             Rent your next bike <br />
-            <Text as={"span"} color={"teal.400"}>
+            <Text as={"span"} color={"pink.400"}>
               with Crypto!
             </Text>
           </Heading>
-          <Text color={"gray.500"}>
-            Connect your wallet, choose your bike, and you're off to the races.
-            When you return it, you can easily pay your fare with BNB. And we
-            all like those BNB gas fees!
+          <Text color={"black.500"}>
+            Connect your wallet, and start your ride using BNB coin !
           </Text>
           <Stack
             direction={"column"}
@@ -51,36 +47,16 @@ export default function Hero() {
           >
             <Button
               onClick={() => handleClick("dashboard")}
-              colorScheme={"teal"}
-              bg={"teal.400"}
+              colorScheme={"pink"}
+              bg={"pink.400"}
               rounded={"full"}
               px={6}
               _hover={{
-                bg: "teal.500",
+                bg: "pink.500",
               }}
             >
               Choose My Bike
             </Button>
-            <Box>
-              <Icon
-                as={Arrow}
-                color={useColorModeValue("gray.800", "gray.300")}
-                w={71}
-                position={"absolute"}
-                right={-71}
-                top={"10px"}
-              />
-              <Text
-                fontSize={"lg"}
-                fontFamily={"Caveat"}
-                position={"absolute"}
-                right={"-125px"}
-                top={"-25px"}
-                transform={"rotate(10deg)"}
-              >
-                Rent at no cost up front
-              </Text>
-            </Box>
           </Stack>
         </Stack>
       </Container>

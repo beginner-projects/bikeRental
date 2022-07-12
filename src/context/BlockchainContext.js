@@ -422,6 +422,17 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    checkifWalletIsConnected();
+    checkRenterExists();
+    getRenterBalance();
+    getDue();
+    getTotalDuration();
+    getOwnerBalance();
+    isOwner();
+    getBalance();
+  }, [currentAccount, owner]);
+
   const ownerWithdraw = async () => {
     try {
       const ownerBalance = await contract.withdrawOwnerBalance();
@@ -587,17 +598,6 @@ export const BlockchainProvider = ({ children }) => {
       });
     }
   };
-
-  useEffect(() => {
-    checkifWalletIsConnected();
-    checkRenterExists();
-    getRenterBalance();
-    getDue();
-    getTotalDuration();
-    getOwnerBalance();
-    isOwner();
-    getBalance();
-  }, [currentAccount, owner]);
 
   return (
     <BlockchainContext.Provider

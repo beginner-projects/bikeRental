@@ -52,7 +52,7 @@ export default function PayForm() {
         </FormControl>
         <Button
           mt={4}
-          colorScheme="teal"
+          colorScheme="pink"
           isLoading={isSubmitting}
           type="submit"
         >

@@ -7,14 +7,22 @@ import {
   Stack,
   useColorModeValue,
   useBreakpointValue,
-  
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { BlockchainContext } from "../context/BlockchainContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar() {
-  const { connectWallet, currentAccount } = useContext(BlockchainContext);
+  const { connectWallet, currentAccount, isOwner } = useContext(BlockchainContext);
+
+
+  let navigate = useNavigate();
+
+  const handleClick = (path) => {
+    navigate(path);
+  };
 
   return (
     <Box>
@@ -37,7 +45,7 @@ export default function Navbar() {
             fontWeight={900}
             fontSize={"x-large"}
           >
-            <Link to="/">BikeChain</Link>
+            <Link to="/">BikeRental</Link>
           </Text>
         </Flex>
 
@@ -48,15 +56,30 @@ export default function Navbar() {
           spacing={6}
         >
           <Button
+            onClick={() => handleClick("admin")}
+            display={{ md: "inline-flex" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            color={"white"}
+            bg={"pink.500"}
+            href={"/admin"}
+            _hover={{
+              bg: "pink.600",
+            }}
+          >
+            Admin
+          </Button>
+
+          <Button
             onClick={connectWallet}
             display={{ md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
-            bg={"teal.500"}
+            bg={"pink.500"}
             href={"#"}
             _hover={{
-              bg: "teal.300",
+              bg: "pink.600",
             }}
           >
             {!currentAccount

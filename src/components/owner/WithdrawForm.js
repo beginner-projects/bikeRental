@@ -35,7 +35,7 @@ export default function WithdrawForm() {
         <Center>
           <Button
             mt={4}
-            colorScheme="teal"
+            colorScheme="pink"
             isLoading={isSubmitting}
             type="submit"
           >

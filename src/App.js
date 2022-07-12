@@ -1,5 +1,5 @@
 import React from "react";
-import Home from './components/Home';
+import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import OwnerDashboard from "./components/owner/OwnerDashboard";
@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="/bikeRental">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
